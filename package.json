@@ -1,0 +1,19 @@
+{
+  "name": "rijndael",
+  "version": "1.0.0",
+  "description": "PoC Rijndael Authentication over API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "GabrielaBezerra",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "egoroof-blowfish": "^2.2.0",
+    "express": "^4.17.1",
+    "javascript-blowfish": "^1.0.4",
+    "request": "^2.88.0",
+    "rijndael-js": "^1.0.0"
+  }
+}
