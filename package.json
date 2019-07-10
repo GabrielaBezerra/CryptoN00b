@@ -13,6 +13,8 @@
     "egoroof-blowfish": "^2.2.0",
     "express": "^4.17.1",
     "javascript-blowfish": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "jws": "^3.2.2",
     "request": "^2.88.0",
     "rijndael-js": "^1.0.0"
   }

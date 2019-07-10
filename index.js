@@ -1,16 +1,38 @@
 const express = require('express');
-const rijndael = require('./rijndael.js')
-const blowfish = require('./blowfish.js')
+const rijndael = require('./rijndael.js');
+const blowfish = require('./blowfish.js');
+const jwt = require('jsonwebtoken');
+
+const secret_key = "secret"
 
 const app = express()
-
 app.use(express.json()) 
 app.use (express.urlencoded({extended: false}))
 
+const verifyToken = (req, res, next) => {
+    const token = req.headers["authtoken"];
+    if (token) {
+        req.token = token;
+        next();
+    } else {
+        res.sendStatus(403);
+    }
+}
 
-app.post('/echo', (req, res) => {
-    console.log(req.body)
-    res.send(req.body)
+app.post('/login', (req,res) => {
+    //query user by req.body.attributes
+    const user = { id: 1, username: "gabi", email: "gabrieladecarvalhobezerra@gmail.com" }
+    jwt.sign(user, secret_key, { expiresIn: "10s" }, (err, token) => {
+        if (err) res.json({ err })
+        else res.json({ token })
+    })
+})
+
+app.post('/echo', verifyToken, (req, res) => {
+    jwt.verify(req.token, secret_key, (err, authData) => {
+        if (err) res.sendStatus(403);
+        else res.json({ echo: req.body, auth: authData });
+    })
 })
 
 app.post('/rijndael/encrypt', (req, res) => {
