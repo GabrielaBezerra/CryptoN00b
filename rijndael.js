@@ -17,12 +17,12 @@ module.exports.encrypt = (text) => {
 
 
 
-module.exports.decrypt = (hex) => {
+module.exports.decrypt = (body) => {
 
     console.log("\n\n----")
-    console.log('Decrypt ->', hex)
+    console.log('Decrypt ->', body.hash)
 
-    const bytes = Buffer.from(hex, 'hex')
+    const bytes = Buffer.from(body.hash, 'hex')
     console.log("ciphered", bytes)
 
     const clearText = rijndael.decrypt(bytes, 256, iv).toString().replace(/\0/g, '');

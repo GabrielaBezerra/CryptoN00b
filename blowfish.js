@@ -19,12 +19,12 @@ module.exports.encrypt = (text) => {
 
 
 
-module.exports.decrypt = (hex) => {
+module.exports.decrypt = (body) => {
 
     console.log("\n\n----")
-    console.log('Decrypt ->', hex)
+    console.log('Decrypt ->', body.hash)
 
-    const intBuffer = toIntBuffer(hex)
+    const intBuffer = toIntBuffer(body.hash)
     const decoded = bf.decode(intBuffer, Blowfish.TYPE.STRING);
 
     console.log(decoded)
