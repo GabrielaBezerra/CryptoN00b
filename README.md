@@ -1,5 +1,5 @@
 # CriptoN00b-JS
-Estudando Criptografias com Javascript
+Estudando Criptografias e Autenticação com Javascript
 
 - Rijndael
 - Blowfish
