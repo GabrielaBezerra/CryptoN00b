@@ -22,7 +22,7 @@ const verifyToken = (req, res, next) => {
 app.post('/login', (req,res) => {
     //query user by req.body.attributes
     const user = { id: 1, username: "gabi", email: "gabrieladecarvalhobezerra@gmail.com" }
-    jwt.sign(user, secret_key, { expiresIn: "10s" }, (err, token) => {
+    jwt.sign(user, secret_key, { expiresIn: "30s" }, (err, token) => {
         if (err) res.json({ err })
         else res.json({ token })
     })
