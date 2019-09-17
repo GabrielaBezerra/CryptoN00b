@@ -4,6 +4,7 @@ const blowfish = require('./blowfish.js');
 const jwt = require('jsonwebtoken');
 
 const secret_key = "secret"
+const port = 3000
 
 const app = express()
 app.use(express.json()) 
@@ -37,22 +38,23 @@ app.post('/echo', verifyToken, (req, res) => {
 
 app.post('/rijndael/encrypt', (req, res) => {
     const encrypted = rijndael.encrypt(JSON.stringify(req.body))
-    res.send(encrypted)
+    res.send({ encrypted })
 })
 
 app.post('/rijndael/decrypt', (req, res) => {
     const decrypted = rijndael.decrypt(req.body)
-    res.send(decrypted)
+    res.send({ decrypted })
 })
 
 app.post('/blowfish/encrypt', (req, res) => {
     const encrypted = blowfish.encrypt(JSON.stringify(req.body))
-    res.send(encrypted)
+    res.send({ encrypted })
 })
 
 app.post('/blowfish/decrypt', (req, res) => {
     const decrypted = blowfish.decrypt(req.body)
-    res.send(decrypted)
+    res.send({ decrypted })
 })
 
-app.listen(8900, () => console.log('Listening...'))
+
+app.listen(port, () => console.log('Listening on port: '+port))
