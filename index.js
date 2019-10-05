@@ -1,6 +1,7 @@
 const express = require('express');
 const rijndael = require('./rijndael.js');
 const blowfish = require('./blowfish.js');
+const caesar = require('./caesar.js');
 const jwt = require('jsonwebtoken');
 
 const secret_key = "secret"
@@ -56,5 +57,10 @@ app.post('/blowfish/decrypt', (req, res) => {
     res.send({ decrypted })
 })
 
+app.post('/rot13', (req, res) => {
+    let str = req.body.text
+    const text = caesar.run(str, caesar.rot13);
+    res.send({ text })
+})
 
 app.listen(port, () => console.log('Listening on port: '+port))
