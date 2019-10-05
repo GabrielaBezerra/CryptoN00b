@@ -13,7 +13,7 @@ let rot13 = {
  }
 
 
-let caesarCipher = (str, dic) => {
+let encode = (str, dic) => {
 
     str = str.toLowerCase();
 
@@ -24,4 +24,28 @@ let caesarCipher = (str, dic) => {
     
     return cipher;
 
+}
+
+
+let decode = (str, dic) => {
+
+  str = str.toLowerCase();
+
+  dic = swap(dic)
+
+  let decipher = '';
+  for(let i = 0 ; i < str.length; i++){
+    decipher += dic[str[i]];
+  }
+  
+  return decipher;
+
+}
+
+function swap(json){
+  var ret = {};
+  for(var key in json){
+    ret[json[key]] = key;
+  }
+  return ret;
 }
